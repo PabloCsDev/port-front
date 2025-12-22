@@ -1,1 +1,319 @@
-/* You can add global styles to this file, and also import other style files */
+/* Tailwind CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fonts para terminal */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* Estilos base */
+@layer base {
+  body {
+    @apply antialiased bg-code-bg text-code-text font-sans;
+    background-image: 
+      radial-gradient(circle at 15% 50%, rgba(120, 119, 198, 0.03) 0%, transparent 20%),
+      radial-gradient(circle at 85% 30%, rgba(255, 119, 114, 0.04) 0%, transparent 20%);
+  }
+  
+  /* Scrollbar estilo terminal */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-code-surface;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-terminal-green/30 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-terminal-green/50;
+  }
+}
+
+/* Componentes customizados */
+@layer components {
+  /* Botão terminal */
+  .btn-terminal {
+    @apply px-4 py-2 bg-code-surface border border-code-border text-terminal-green 
+           font-mono text-sm rounded-lg hover:bg-terminal-green/10 hover:border-terminal-green 
+           transition-all duration-300 hover:shadow-lg hover:shadow-terminal-green/20;
+  }
+  
+  /* Card terminal */
+  .card-terminal {
+    @apply bg-code-surface border border-code-border rounded-xl p-6 
+           hover:border-terminal-cyan/50 hover:shadow-xl hover:shadow-terminal-cyan/10 
+           transition-all duration-500 backdrop-blur-sm bg-opacity-50;
+  }
+  
+  /* Input terminal */
+  .input-terminal {
+    @apply bg-code-bg border border-code-border text-code-text font-mono 
+           rounded px-4 py-2 focus:outline-none focus:border-terminal-green 
+           focus:ring-1 focus:ring-terminal-green;
+  }
+  
+  /* Badge tecnologia */
+  .tech-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full bg-code-surface 
+           border border-code-border text-sm font-mono transition-all 
+           hover:scale-105 hover:border-terminal-cyan;
+  }
+  
+  /* Linha de comando */
+  .command-line {
+    @apply font-mono text-terminal-green bg-black/30 p-4 rounded-lg 
+           border-l-4 border-terminal-green overflow-x-auto;
+  }
+  
+  /* Glow effect */
+  .glow-effect {
+    @apply relative;
+  }
+  
+  .glow-effect::before {
+    @apply content-[''] absolute -inset-1 bg-gradient-to-r from-terminal-green/20 to-terminal-cyan/20 
+           rounded-xl blur opacity-0 transition-opacity duration-500 -z-10;
+  }
+  
+  .glow-effect:hover::before {
+    @apply opacity-100;
+  }
+}
+
+/* Animações customizadas */
+.typing-animation {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid;
+  width: 0;
+  animation: 
+    typing 3.5s steps(40, end) forwards,
+    blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #00ff00; }
+}
+
+/* Efeito de matrix (opcional, para fundo) */
+.matrix-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.matrix-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(transparent 95%, rgba(0, 255, 0, 0.05) 100%),
+    linear-gradient(90deg, transparent 95%, rgba(0, 255, 0, 0.05) 100%);
+  background-size: 50px 50px;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+/* Efeito de scanline (como terminal antigo) */
+.scanlines {
+  position: relative;
+  overflow: hidden;
+}
+
+.scanlines::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0, 255, 0, 0.03) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 1;
+  animation: scanline 10s linear infinite;
+}
+
+@keyframes scanline {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100vh); }
+}
+
+/* Efeito de partículas (opcional) */
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #00ff00;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* Gradientes animados */
+.animated-gradient {
+  background: linear-gradient(-45deg, #0d1117, #161b22, #0a0c10, #161b22);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Componentes modernos com toques de terminal */
+@layer components {
+  /* Card moderno */
+  .card-modern {
+    @apply bg-white/80 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 
+           border border-gray-200 dark:border-gray-700 shadow-lg
+           hover:shadow-2xl hover:-translate-y-2 transition-all duration-500
+           relative overflow-hidden animate-fade-in;
+  }
+  
+  /* Botão primário moderno */
+  .btn-modern-primary {
+    @apply inline-flex items-center px-8 py-4 bg-gradient-to-r from-terminal-cyan to-terminal-purple 
+           text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl
+           hover:scale-105 transition-all duration-300 transform;
+  }
+  
+  /* Botão secundário moderno */
+  .btn-modern-secondary {
+    @apply inline-flex items-center px-8 py-4 bg-white/10 dark:bg-gray-800/50 backdrop-blur-sm
+           border border-terminal-cyan/30 text-terminal-cyan font-semibold rounded-xl 
+           shadow-lg hover:shadow-2xl hover:scale-105 hover:bg-terminal-cyan/10
+           transition-all duration-300 transform;
+  }
+  
+  /* Linha de código (para detalhes) */
+  .code-line {
+    @apply font-mono text-sm bg-gray-100 dark:bg-gray-800 px-3 py-2 rounded-lg
+           border-l-4 border-terminal-green overflow-x-auto;
+  }
+  
+  /* Tag estilo terminal (para badges) */
+  .terminal-tag {
+    @apply inline-flex items-center px-3 py-1 rounded-full bg-terminal-green/10 
+           border border-terminal-green/30 text-terminal-green font-mono text-sm;
+  }
+}
+
+/* Animações suaves */
+.stagger-animation > * {
+  opacity: 0;
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Gradientes suaves */
+.gradient-terminal {
+  background: linear-gradient(135deg, 
+    rgba(0, 255, 0, 0.1) 0%, 
+    rgba(0, 255, 255, 0.1) 50%, 
+    rgba(175, 0, 255, 0.1) 100%);
+}
+
+/* Efeito de brilho sutil */
+.glow-simple {
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.1);
+}
+
+.glow-simple:hover {
+  box-shadow: 0 0 30px rgba(0, 255, 0, 0.2);
+}
+
+/* Animações sutis que não pesam */
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out;
+}
+
+.stagger-animation > * {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.stagger-animation > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-animation > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-animation > *:nth-child(3) { animation-delay: 0.3s; }
+
+.animate-pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
+  }
+  50% { 
+    box-shadow: 0 0 30px rgba(37, 99, 235, 0.5);
+  }
+}
+
+/* Efeito de hover suave */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Transições suaves para dark mode */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
