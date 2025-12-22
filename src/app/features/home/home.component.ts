@@ -11,9 +11,9 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
   selector: 'app-home',
   standalone: true,
   imports: [
-    CommonModule, 
-    RouterLink, 
-    LoadingComponent, 
+    CommonModule,
+    RouterLink,
+    LoadingComponent,
     ErrorComponent,
     HeaderComponent,
     FooterComponent
@@ -40,101 +40,259 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
         
         @else if (profileService.profile()) {
           <div class="max-w-6xl mx-auto">
-            <!-- Habilidades Técnicas em Primeiro (SEU PEDIDO) -->
-            <div class="mb-16 animate-fade-in">
-              <div class="text-center mb-12">
-                <h1 class="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
-                  {{ profileService.profile()!.name }}
-                </h1>
-                
-                <div class="inline-flex items-center bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-6 py-3 rounded-lg mb-6 shadow-lg">
-                  <span class="text-xl font-semibold">{{ profileService.profile()!.title }}</span>
+            <!-- HERO -->
+            <div class="text-center mb-16 animate-fade-in">
+              <h1 class="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-4">
+                {{ profileService.profile()!.name }}
+              </h1>
+              
+              <div class="inline-flex items-center bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-6 py-3 rounded-lg mb-6 shadow-lg animate-pulse-glow">
+                <span class="text-xl font-semibold">
+                  {{ profileService.profile()!.title }}
+                </span>
+              </div>
+              
+              <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                {{ profileService.profile()!.summary }}
+              </p>
+              
+              <div class="inline-flex items-center mt-6 px-4 py-2 bg-green-100 dark:bg-green-900/30 border border-green-300 dark:border-green-700 rounded-lg">
+                <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse mr-2"></div>
+                <span class="text-green-700 dark:text-green-400 font-mono text-sm">
+                  API Back-end: Online • Dados em tempo real
+                </span>
+              </div>
+            </div>
+            
+            <!-- STATS -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20 stagger-animation">
+              <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                <div class="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">Dezenas</div>
+                <div class="font-semibold text-gray-700 dark:text-gray-300 text-lg">
+                  Projetos Desenvolvidos
                 </div>
-                
-                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8">
-                  {{ profileService.profile()!.summary }}
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                  Arquitetura escalável e boas práticas
                 </p>
               </div>
-
-              <!-- Explore Minhas Habilidades Técnicas - AGORA EM PRIMEIRO -->
-              <div class="bg-white dark:bg-gray-800/50 rounded-2xl shadow-xl p-8 mb-12 backdrop-blur-sm border border-gray-200 dark:border-gray-700">
-                <div class="text-center mb-8">
-                  <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                    Explore Minhas Habilidades Técnicas
-                  </h2>
-                  <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                    Tecnologias que domino e projetos desenvolvidos com arquitetura escalável e boas práticas de desenvolvimento
-                  </p>
+              
+              <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                <div class="text-4xl font-bold text-green-600 dark:text-green-400 mb-2">100%</div>
+                <div class="font-semibold text-gray-700 dark:text-gray-300 text-lg">
+                  Código Aberto
+                </div>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                  Repositórios públicos documentados
+                </p>
+              </div>
+              
+              <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                <div class="text-4xl font-bold text-purple-600 dark:text-purple-400 mb-2">+2 Anos</div>
+                <div class="font-semibold text-gray-700 dark:text-gray-300 text-lg">
+                  Experiência Full Stack
+                </div>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                  Spring Boot API + Angular Front-end
+                </p>
+              </div>
+            </div>
+            
+            <!-- STACK TECNOLÓGICA -->
+            <div class="bg-white dark:bg-gray-800/50 rounded-2xl shadow-xl p-8 mb-16 border border-gray-200 dark:border-gray-700 backdrop-blur-sm">
+              <h2 class="text-3xl font-bold text-center mb-10 text-gray-900 dark:text-white">
+                🛠 Stack Tecnológica Principal
+              </h2>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Backend -->
+                <div class="bg-gray-50 dark:bg-gray-900/50 rounded-xl p-6 hover:bg-gradient-to-br hover:from-blue-50 hover:to-blue-100 dark:hover:from-blue-900/20 dark:hover:to-blue-900/10 transition-all duration-300">
+                  <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900/30 mb-4">
+                    <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M20.59 12l-3.3-3.3a1 1 0 1 1 1.42-1.4l4 4a1 1 0 0 1 0 1.4l-4 4a1 1 0 0 1-1.42-1.4l3.3-3.3zM3.4 12l3.3 3.3a1 1 0 0 1-1.42 1.4l-4-4a1 1 0 0 1 0-1.4l4-4a1 1 0 0 1 1.42 1.4L3.4 12z"/>
+                      <path d="M14.7 16.3a1 1 0 0 1-1.4 1.4l-4-4a1 1 0 0 1 0-1.4l4-4a1 1 0 0 1 1.4 1.4L11.42 12l3.28 3.3z"/>
+                    </svg>
+                  </div>
+                  <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Backend</h3>
+                  <ul class="space-y-2">
+                    <li class="flex items-center text-gray-700 dark:text-gray-300">
+                      <div class="w-2 h-2 rounded-full bg-blue-500 mr-2"></div>
+                      Java 17+
+                    </li>
+                    <li class="flex items-center text-gray-700 dark:text-gray-300">
+                      <div class="w-2 h-2 rounded-full bg-blue-500 mr-2"></div>
+                      Spring Boot 3.x
+                    </li>
+                    <li class="flex items-center text-gray-700 dark:text-gray-300">
+                      <div class="w-2 h-2 rounded-full bg-blue-500 mr-2"></div>
+                      Spring Security
+                    </li>
+                    <li class="flex items-center text-gray-700 dark:text-gray-300">
+                      <div class="w-2 h-2 rounded-full bg-blue-500 mr-2"></div>
+                      JPA/Hibernate
+                    </li>
+                  </ul>
                 </div>
                 
-                <div class="flex flex-col sm:flex-row justify-center gap-6">
-                  <a 
-                    routerLink="/stack"
-                    class="group inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 transform"
-                  >
-                    <svg class="w-6 h-6 mr-3 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                <!-- Frontend -->
+                <div class="bg-gray-50 dark:bg-gray-900/50 rounded-xl p-6 hover:bg-gradient-to-br hover:from-purple-50 hover:to-purple-100 dark:hover:from-purple-900/20 dark:hover:to-purple-900/10 transition-all duration-300">
+                  <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-900/30 mb-4">
+                    <svg class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                     </svg>
-                    Visualizar Stack Tecnológica
-                  </a>
-                  
-                  <a 
-                    routerLink="/projects"
-                    class="group inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-gray-800 to-gray-900 dark:from-gray-700 dark:to-gray-800 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 transform"
-                  >
-                    <svg class="w-6 h-6 mr-3 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                  </div>
+                  <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Frontend</h3>
+                  <ul class="space-y-2">
+                    <li class="flex items-center text-gray-700 dark:text-gray-300">
+                      <div class="w-2 h-2 rounded-full bg-purple-500 mr-2"></div>
+                      Angular 17+
+                    </li>
+                    <li class="flex items-center text-gray-700 dark:text-gray-300">
+                      <div class="w-2 h-2 rounded-full bg-purple-500 mr-2"></div>
+                      TypeScript
+                    </li>
+                    <li class="flex items-center text-gray-700 dark:text-gray-300">
+                      <div class="w-2 h-2 rounded-full bg-purple-500 mr-2"></div>
+                      Tailwind CSS
+                    </li>
+                    <li class="flex items-center text-gray-700 dark:text-gray-300">
+                      <div class="w-2 h-2 rounded-full bg-purple-500 mr-2"></div>
+                      RxJS
+                    </li>
+                  </ul>
+                </div>
+                
+                <!-- Banco de Dados -->
+                <div class="bg-gray-50 dark:bg-gray-900/50 rounded-xl p-6 hover:bg-gradient-to-br hover:from-green-50 hover:to-green-100 dark:hover:from-green-900/20 dark:hover:to-green-900/10 transition-all duration-300">
+                  <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-green-100 dark:bg-green-900/30 mb-4">
+                    <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M4 7v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2zm14 0H6v10h12V7zm-1-3h2v2h-2V4zm-4 0h2v2h-2V4zM9 4h2v2H9V4zM5 4h2v2H5V4z"/>
                     </svg>
-                    Ver Projetos
-                  </a>
+                  </div>
+                  <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Banco de Dados</h3>
+                  <ul class="space-y-2">
+                    <li class="flex items-center text-gray-700 dark:text-gray-300">
+                      <div class="w-2 h-2 rounded-full bg-green-500 mr-2"></div>
+                      PostgreSQL
+                    </li>
+                    <li class="flex items-center text-gray-700 dark:text-gray-300">
+                      <div class="w-2 h-2 rounded-full bg-green-500 mr-2"></div>
+                      MySQL
+                    </li>
+                    <li class="flex items-center text-gray-700 dark:text-gray-300">
+                      <div class="w-2 h-2 rounded-full bg-green-500 mr-2"></div>
+                      MongoDB
+                    </li>
+                    <li class="flex items-center text-gray-700 dark:text-gray-300">
+                      <div class="w-2 h-2 rounded-full bg-green-500 mr-2"></div>
+                      Redis
+                    </li>
+                  </ul>
+                </div>
+                
+                <!-- DevOps -->
+                <div class="bg-gray-50 dark:bg-gray-900/50 rounded-xl p-6 hover:bg-gradient-to-br hover:from-red-50 hover:to-red-100 dark:hover:from-red-900/20 dark:hover:to-red-900/10 transition-all duration-300">
+                  <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-red-100 dark:bg-red-900/30 mb-4">
+                    <svg class="w-6 h-6 text-red-600 dark:text-red-400" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M20 6h-8l-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V6h5.17l2 2H20v10zm-2-6H6v-2h12v2zm-4 4H6v-2h8v2z"/>
+                    </svg>
+                  </div>
+                  <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">DevOps & Tools</h3>
+                  <ul class="space-y-2">
+                    <li class="flex items-center text-gray-700 dark:text-gray-300">
+                      <div class="w-2 h-2 rounded-full bg-red-500 mr-2"></div>
+                      Docker
+                    </li>
+                    <li class="flex items-center text-gray-700 dark:text-gray-300">
+                      <div class="w-2 h-2 rounded-full bg-red-500 mr-2"></div>
+                      Git/GitHub
+                    </li>
+                    <li class="flex items-center text-gray-700 dark:text-gray-300">
+                      <div class="w-2 h-2 rounded-full bg-red-500 mr-2"></div>
+                      Linux
+                    </li>
+                    <li class="flex items-center text-gray-700 dark:text-gray-300">
+                      <div class="w-2 h-2 rounded-full bg-red-500 mr-2"></div>
+                      CI/CD
+                    </li>
+                  </ul>
                 </div>
               </div>
-            </div>
-            
-            <!-- Stats -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 stagger-animation">
-              <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-                <div class="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">Dezenas</div>
-                <div class="text-gray-700 dark:text-gray-300 font-semibold">Projetos Desenvolvidos</div>
-                <div class="text-sm text-gray-500 dark:text-gray-400 mt-2">Com arquitetura escalável e boas práticas</div>
-              </div>
               
-              <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-                <div class="text-4xl font-bold text-green-600 dark:text-green-400 mb-2">100%</div>
-                <div class="text-gray-700 dark:text-gray-300 font-semibold">Código Aberto</div>
-                <div class="text-sm text-gray-500 dark:text-gray-400 mt-2">Repositórios públicos com documentação completa</div>
-              </div>
-              
-              <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-                <div class="text-4xl font-bold text-purple-600 dark:text-purple-400 mb-2">Full Stack</div>
-                <div class="text-gray-700 dark:text-gray-300 font-semibold">Arquitetura Completa</div>
-                <div class="text-sm text-gray-500 dark:text-gray-400 mt-2">Spring Boot API + Angular Front-end</div>
+              <div class="text-center mt-10">
+                <a 
+                  routerLink="/stack"
+                  class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-gray-800 to-gray-900 dark:from-gray-700 dark:to-gray-800 text-white font-medium rounded-lg hover:scale-105 transition-all duration-300"
+                >
+                  <span>Ver Stack Completa</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                  </svg>
+                </a>
               </div>
             </div>
             
-            <!-- Contact Info -->
-            <div class="bg-white dark:bg-gray-800/50 rounded-2xl shadow-xl p-8 mb-16 backdrop-blur-sm border border-gray-200 dark:border-gray-700">
-              <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
-                Contato & Informações
+            <!-- CTA -->
+            <div class="text-center mb-24">
+              <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+                🚀 Explore Mais
+              </h2>
+              <p class="text-gray-600 dark:text-gray-300 mb-10 max-w-2xl mx-auto">
+                Confira meus projetos completos e explore detalhes técnicos da minha stack
+              </p>
+              
+              <div class="flex flex-col sm:flex-row justify-center gap-6">
+                <a 
+                  routerLink="/stack"
+                  class="animate-float inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300"
+                >
+                  <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                  </svg>
+                  Stack Completa
+                </a>
+                
+                <a 
+                  routerLink="/projects"
+                  class="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-gray-800 to-gray-900 dark:from-gray-700 dark:to-gray-800 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300"
+                >
+                  <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                  </svg>
+                  Ver Projetos
+                </a>
+              </div>
+              
+              <div class="mt-8 inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg">
+                <div class="w-2 h-2 bg-white rounded-full mr-2"></div>
+                <span class="text-sm font-medium">
+                  Arquitetura Full Stack: Spring Boot API + Angular Front-end
+                </span>
+              </div>
+            </div>
+            
+            <!-- CONTATO -->
+            <div class="bg-white dark:bg-gray-800/50 rounded-2xl shadow-xl p-8 mb-16 border border-gray-200 dark:border-gray-700 backdrop-blur-sm">
+              <h2 class="text-3xl font-bold text-center mb-10 text-gray-900 dark:text-white">
+                📞 Contato & Informações
               </h2>
               
               <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="space-y-6">
-                  <div class="flex items-center space-x-4 p-4 bg-gray-50 dark:bg-gray-900/50 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors">
+                  <div class="flex items-start space-x-4 p-4 bg-gray-50 dark:bg-gray-900/50 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors">
                     <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center flex-shrink-0">
                       <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
                       </svg>
                     </div>
                     <div>
-                      <h3 class="font-semibold text-gray-900 dark:text-white">Localização</h3>
+                      <h3 class="font-semibold text-gray-900 dark:text-white mb-1">Localização</h3>
                       <p class="text-gray-600 dark:text-gray-300">
                         {{ profileService.profile()!.location }}
                       </p>
                     </div>
                   </div>
                   
-                  <div class="flex items-center space-x-4 p-4 bg-gray-50 dark:bg-gray-900/50 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors">
+                  <div class="flex items-start space-x-4 p-4 bg-gray-50 dark:bg-gray-900/50 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors">
                     <div class="w-12 h-12 rounded-xl bg-green-100 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
                       <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
@@ -142,10 +300,10 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
                       </svg>
                     </div>
                     <div>
-                      <h3 class="font-semibold text-gray-900 dark:text-white">Email</h3>
+                      <h3 class="font-semibold text-gray-900 dark:text-white mb-1">Email</h3>
                       <a 
                         href="mailto:{{ profileService.profile()!.email }}"
-                        class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors font-medium"
+                        class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors font-medium hover:underline"
                       >
                         {{ profileService.profile()!.email }}
                       </a>
@@ -154,36 +312,36 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
                 </div>
                 
                 <div class="space-y-6">
-                  <div class="flex items-center space-x-4 p-4 bg-gray-50 dark:bg-gray-900/50 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors">
+                  <div class="flex items-start space-x-4 p-4 bg-gray-50 dark:bg-gray-900/50 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors">
                     <div class="w-12 h-12 rounded-xl bg-gray-900 dark:bg-gray-700 flex items-center justify-center flex-shrink-0">
                       <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                       </svg>
                     </div>
                     <div>
-                      <h3 class="font-semibold text-gray-900 dark:text-white">GitHub</h3>
+                      <h3 class="font-semibold text-gray-900 dark:text-white mb-1">GitHub</h3>
                       <a 
                         [href]="profileService.profile()!.github"
                         target="_blank"
-                        class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors font-medium"
+                        class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors font-medium hover:underline"
                       >
                         {{ profileService.profile()!.github.replace('https://', '') }}
                       </a>
                     </div>
                   </div>
                   
-                  <div class="flex items-center space-x-4 p-4 bg-gray-50 dark:bg-gray-900/50 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors">
+                  <div class="flex items-start space-x-4 p-4 bg-gray-50 dark:bg-gray-900/50 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors">
                     <div class="w-12 h-12 rounded-xl bg-blue-700 flex items-center justify-center flex-shrink-0">
                       <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                       </svg>
                     </div>
                     <div>
-                      <h3 class="font-semibold text-gray-900 dark:text-white">LinkedIn</h3>
+                      <h3 class="font-semibold text-gray-900 dark:text-white mb-1">LinkedIn</h3>
                       <a 
                         [href]="profileService.profile()!.linkedin"
                         target="_blank"
-                        class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors font-medium"
+                        class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors font-medium hover:underline"
                       >
                         {{ profileService.profile()!.linkedin.replace('https://', '') }}
                       </a>
@@ -191,20 +349,6 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
                   </div>
                 </div>
               </div>
-            </div>
-            
-            <!-- CTA Final -->
-            <div class="text-center">
-              <div class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg mb-6">
-                <div class="w-2 h-2 rounded-full bg-white mr-2"></div>
-                <span class="text-sm font-medium">
-                  Arquitetura Full Stack: Spring Boot API + Angular Front-end
-                </span>
-              </div>
-              
-              <p class="text-gray-600 dark:text-gray-300 mb-6">
-                Desenvolvido com TypeScript, Angular 17+ e consumindo API REST Spring Boot
-              </p>
             </div>
           </div>
         }
