@@ -1,207 +1,174 @@
-<table align="center"> <tr> <td><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angular/angular-original.svg" width="70"/></td> <td><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" width="70"/></td> <td><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" width="70"/></td> <td><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rxjs/rxjs-original.svg" width="70"/></td> </tr> </table>
-Frontend moderno desenvolvido em Angular 17+ para consumir a API REST Spring Boot de um portfólio profissional. Interface responsiva, performática e com foco em experiência do usuário, demonstrando boas práticas de desenvolvimento frontend.
+# 🚀 Portfolio Web — Frontend Full Stack
 
-### 🎯 Objetivo do Projeto
-Criar uma interface profissional e moderna para exibir informações institucionais
+<p align="center">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angular/angular-original.svg" width="70"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" width="70"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" width="70"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg" width="70"/>
+</p>
 
-Demonstrar consumo eficiente de APIs REST
+Frontend institucional desenvolvido em **Angular moderno**, consumindo uma **API REST real em produção**, com foco em **arquitetura limpa, organização, performance e experiência do usuário**.
 
-Implementar boas práticas de desenvolvimento Angular (Standalone Components, Signals, etc.)
+Este projeto faz parte de um **portfólio full stack profissional**, simulando um produto real de mercado com frontend e backend desacoplados.
 
-Proporcionar excelente experiência em dispositivos móveis e desktop
+---
 
-### ✨ Funcionalidades
-✅ Interface responsiva com Tailwind CSS
-✅ Dark/Light mode automático
-✅ Animações suaves e transições otimizadas
-✅ Consumo de API com tratamento de erros
-✅ Componentes standalone (Angular 17+)
-✅ Gerenciamento de estado com Signals
-✅ SEO otimizado e performance
-✅ Design system consistente
+## 🎯 Objetivo do Projeto
 
-### 🏗 Arquitetura
+- Apresentar um portfólio profissional dinâmico e institucional  
+- Consumir dados reais de uma API REST (Spring Boot)  
+- Demonstrar domínio de arquitetura frontend moderna  
+- Simular um cenário real de aplicação em produção  
+- Servir como vitrine técnica para recrutadores e empresas  
+
+---
+
+## ✨ Funcionalidades
+
+✅ Consumo de API REST em produção  
+✅ Exibição dinâmica de perfil profissional  
+✅ Listagem de stack tecnológica  
+✅ Listagem de projetos técnicos  
+✅ Separação clara de responsabilidades  
+✅ Environment configurado para dev e produção  
+✅ SSR + Prerender para melhor performance e SEO  
+✅ UI responsiva e moderna  
+✅ Deploy automatizado em cloud  
+
+---
+
+## 🏗 Arquitetura da Aplicação
 ```
-Frontend Angular 17+
-       ↓
-    Services (API Calls)
-       ↓
-    Componentes Standalone
-       ↓
-   Interface do Usuário
-   ```
-O projeto segue uma arquitetura modular moderna, aproveitando ao máximo os recursos do Angular 17+.
-
-### 📱 Telas Principais
-🔹 Home - Apresentação profissional com stats e stack
-🔹 Stack - Lista completa de tecnologias organizadas por categoria
-🔹 Projects - Galeria de projetos com detalhes técnicos
-🔹 Responsive - Layout adaptado para todos os dispositivos
-
-### 🚀 Como executar o projeto
-Pré-requisitos
-
-```
-Node.js 18+
-
-npm 9+ ou yarn
-
-Angular CLI 17+
-```
-
-### 1️⃣ Clonar o repositório
-
-bash
-git clone https://github.com/PabloCsDev/port-front.git
-cd portfolio-frontend
-### 2️⃣ Instalar dependências
-```
-bash
-npm install
-# ou
-yarn install
-``` 
-### 3️⃣ Configurar API Backend
-Certifique-se que a Portfolio API está rodando na porta 8080
-
-### 4️⃣ Executar em desenvolvimento
-```
-bash
-ng serve
-# ou
-npm start 
+Usuário
+↓
+Angular (SSR + Prerender)
+↓
+ApiService (HttpClient)
+↓
+API REST Spring Boot
 ```
 
-### 🌐 A aplicação estará disponível em:
+O frontend é totalmente desacoplado do backend, consumindo dados via HTTP e permitindo escalabilidade, manutenção e evolução independentes.
+
+---
+
+## 🌐 Backend Consumido
+
+API REST em produção (Spring Boot):
 ```
-http://localhost:4200
+https://portifolio-api-bae0.onrender.com/api
 ```
 
-### 🧪 Scripts disponíveis
-bash
-# Servidor de desenvolvimento
+### Endpoints utilizados
 ```
-npm run start
+- `GET /profile` → Perfil profissional  
+- `GET /stack` → Stack tecnológica  
+- `GET /projects` → Projetos técnicos  
 ```
-# Build para produção
-```
-npm run build
-```
-# Executar testes
-```
-npm run test
-```
-# Lint do código
-```
-npm run lint
-```
-# Preview do build
-```
-npm run preview
-```
-### 📁 Estrutura do Projeto
+---
+
+## 🧱 Estrutura do Projeto
+
 ```
 src/
 ├── app/
-│   ├── core/
-│   │   ├── services/
-│   │   │   ├── api.service.ts
-│   │   │   ├── profile.service.ts
-│   │   │   ├── theme.service.ts
-│   │   │   └── index.ts
-│   │   └── interceptors/
-│   │       └── api.interceptor.ts
-│   ├── features/
-│   │   ├── home/
-│   │   │   └── home.component.ts
-│   │   ├── stack/
-│   │   │   └── stack.component.ts
-│   │   ├── projects/
-│   │   │   └── projects.component.ts
-│   │   └── shared/
-│   │       ├── components/
-│   │       │   ├── header/
-│   │       │   ├── footer/
-│   │       │   ├── loading/
-│   │       │   └── error/
-│   │       └── layouts/
-│   │           └── main.layout.ts
-│   ├── app.config.ts
-│   ├── app.routes.ts
-│   └── app.component.ts
-├── assets/
-│   ├── images/
-│   └── styles/
-│       └── global.scss
+│ ├── core/
+│ │ └── services/
+│ │ └── api.service.ts
+│ ├── features/
+│ │ ├── home/
+│ │ ├── stack/
+│ │ └── projects/
+│ ├── shared/
+│ │ └── components/
+│ └── app.routes.ts
 ├── environments/
-│   ├── environment.ts
-│   └── environment.prod.ts
-└── index.html
+│ ├── environment.ts
+│ └── environment.development.ts
+└── styles.css
+```
+
+Arquitetura pensada para **escalabilidade, legibilidade, manutenção e crescimento do projeto**.
+
+---
+
+## ⚙️ Configuração de Environment
+
+### Produção
+```
+export const environment = {
+  production: true,
+  apiUrl: 'https://portifolio-api-bae0.onrender.com/api'
+};
+```
+```
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:8080/api'
+};
+```
+### 🚀 Como executar o projeto localmente
 ``` 
-### 🛠 Tecnologias Utilizadas
-Angular 17+ - Framework principal
+Pré-requisitos
+Node.js 18+
+Angular CLI 21+
+```
+### 1️⃣ Clonar o repositório
+```
+git clone https://github.com/PabloCsDev/portfolio-frontend.git
+cd portfolio-frontend
+```
+### 2️⃣ Instalar dependências
+```
+npm install
+```
+### 3️⃣ Executar em desenvolvimento
+```
+ng serve
+```
+A aplicação estará disponível em:
+```
+http://localhost:4200
+``` 
+### 🏗 Build de Produção
+```
+npm run build
+```
+Arquivos gerados em:
+```
+dist/portfolio-frontend/browser
+```
+### ☁️ Deploy
+Frontend hospedado na Vercel, utilizando:
 
-TypeScript - Tipagem estática
+Build automático
 
-Tailwind CSS - Estilização utilitária
+Prerender de rotas
 
-RxJS - Programação reativa
+Alta performance
 
-ESLint - Padronização de código
+HTTPS por padrão
 
-Angular Signals - Gerenciamento de estado
+Integração direta com API em produção
 
-Angular Router - Navegação SPA
+### 🔮 Evoluções Futuras (Planejadas)
+Skeleton loaders e estados de loading
 
-Angular HttpClient - Comunicação HTTP
+Cache e otimização de requisições
 
-### 🎨 Design System
-Cores: Gradientes modernos com paleta profissional
+Integração com GitHub API
 
-Tipografia: Fontes do sistema para performance
-
-Espaçamento: Sistema 4px-based
-
-Breakpoints: Mobile-first (sm:640px, md:768px, lg:1024px)
-
-Componentes: Reutilizáveis e consistentes
-
-### 🔮 Evoluções futuras (planejadas)
-PWA (Progressive Web App)
+Página de contato dinâmica
 
 Internacionalização (i18n)
 
-Analytics integrado
+Monitoramento e logs de erro
 
-Testes E2E com Cypress
-
-Otimização de performance (Lazy Loading)
-
-Integração com CMS Headless
-
-Deploy automático CI/CD
-
-### ⚡ Performance
-Lighthouse Score: 95+ (Performance, Accessibility, SEO)
-
-Bundle otimizado com tree-shaking
-
-Imagens otimizadas e lazy loading
-
-Code splitting automático
-
-### 📱 Responsividade
-Mobile (100% funcional)
-
-Tablet (layout adaptativo)
-
-Desktop (experiência completa)
-
-Acessibilidade (WCAG 2.1)
+Animações e microinterações
 
 ### 👨‍💻 Desenvolvido por
 Pablo Carvalho Santos
-Desenvolvedor Full Stack | Angular & Spring Boot
+Desenvolvedor Back-end | Java & Spring Boot
 
 📧 Email: devpablocarvalho@gmail.com
 🔗 LinkedIn: https://www.linkedin.com/in/pablo-carvalho-140255260
