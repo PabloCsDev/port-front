@@ -46,7 +46,8 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
                 {{ profileService.profile()!.name }}
               </h1>
               
-              <div class="inline-flex items-center bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-6 py-3 rounded-lg mb-6 shadow-lg animate-pulse-glow">
+              <div class="inline-flex items-center bg-gradient-to-r from-indigo-700 to-indigo-600
+ text-white px-6 py-3 rounded-lg mb-6 shadow-lg animate-pulse-glow">
                 <span class="text-xl font-semibold">
                   {{ profileService.profile()!.title }}
                 </span>
@@ -67,7 +68,7 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
             <!-- STATS -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20 stagger-animation">
               <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-                <div class="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">Dezenas</div>
+                <div class="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-2">Dezenas</div>
                 <div class="font-semibold text-gray-700 dark:text-gray-300 text-lg">
                   Projetos Desenvolvidos
                 </div>
@@ -243,7 +244,8 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
               <div class="flex flex-col sm:flex-row justify-center gap-6">
                 <a 
                   routerLink="/stack"
-                  class="animate-float inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300"
+                  class="animate-float inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-slate-700 to-slate-800
+ text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300"
                 >
                   <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
@@ -253,7 +255,8 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
                 
                 <a 
                   routerLink="/projects"
-                  class="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-gray-800 to-gray-900 dark:from-gray-700 dark:to-gray-800 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300"
+                  class="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-indigo-700 to-indigo-800
+ dark:from-gray-700 dark:to-gray-800 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300"
                 >
                   <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
@@ -280,7 +283,8 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
                 <div class="space-y-6">
                   <div class="flex items-start space-x-4 p-4 bg-gray-50 dark:bg-gray-900/50 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors">
                     <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center flex-shrink-0">
-                      <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                      <svg class="w-6 h-6 text-indigo-500 dark:text-indigo-400
+" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
                       </svg>
                     </div>

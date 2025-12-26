@@ -29,7 +29,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
         <nav class="flex items-center gap-6 text-sm font-medium">
           <a
             routerLink="/"
-            routerLinkActive="text-blue-600 dark:text-blue-400"
+            routerLinkActive="text-indigo-500 dark:text-indigo-400"
             class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
           >
             Home
