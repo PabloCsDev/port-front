@@ -30,7 +30,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
           <a
             routerLink="/"
             routerLinkActive="text-indigo-500 dark:text-indigo-400"
-            class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            class="text-gray-700 dark:text-gray-300 hover:text-indigo-500
+ dark:hover:text-indigo-400 transition-colors"
           >
             Home
           </a>

@@ -1,5 +1,5 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ProfileService } from '../../core/services/profile.service';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
@@ -16,89 +16,77 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
     LoadingComponent,
     ErrorComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
   ],
   template: `
-    <div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
-      <app-header />
-      
-      <main class="container mx-auto px-4 py-12">
-        @if (profileService.loading()) {
-          <div class="mt-20">
-            <app-loading />
-          </div>
-        }
-        
-        @else if (profileService.error()) {
-          <div class="mt-20">
-            <app-error 
-              [message]="profileService.error()!"
-              (onRetry)="loadProfile()"
-            />
-          </div>
-        }
-        
-        @else if (profileService.profile()) {
-          <div class="max-w-6xl mx-auto">
-            <!-- HERO -->
-            <div class="text-center mb-16 animate-fade-in">
-              <h1 class="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-4">
-                {{ profileService.profile()!.name }}
-              </h1>
-              
-              <div class="inline-flex items-center bg-gradient-to-r from-indigo-700 to-indigo-600
- text-white px-6 py-3 rounded-lg mb-6 shadow-lg animate-pulse-glow">
-                <span class="text-xl font-semibold">
-                  {{ profileService.profile()!.title }}
-                </span>
+<div class="min-h-screen bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 text-zinc-200">
+  <app-header />
+
+  <main class="container mx-auto px-4 py-16">
+    @if (profileService.loading()) {
+      <div class="mt-24">
+        <app-loading />
+      </div>
+    }
+
+    @else if (profileService.error()) {
+      <div class="mt-24">
+        <app-error
+          [message]="profileService.error()!"
+          (onRetry)="loadProfile()"
+        />
+      </div>
+    }
+
+    @else if (profileService.profile()) {
+      <div class="max-w-6xl mx-auto">
+        <section class="text-center mb-20">
+          <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">
+            {{ profileService.profile()!.name }}
+          </h1>
+
+          <div class="inline-block mb-8">
+            <div class="rounded-lg overflow-hidden border border-zinc-700 bg-zinc-900">
+              <div class="flex items-center gap-2 px-3 py-1.5 bg-zinc-800 border-b border-zinc-700">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-yellow-400"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-green-500"></span>
+                <span class="ml-2 text-xs text-zinc-400 font-mono">terminal</span>
               </div>
-              
-              <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                {{ profileService.profile()!.summary }}
-              </p>
-              
-              <div class="inline-flex items-center mt-6 px-4 py-2 bg-green-100 dark:bg-green-900/30 border border-green-300 dark:border-green-700 rounded-lg">
-                <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse mr-2"></div>
-                <span class="text-green-700 dark:text-green-400 font-mono text-sm">
-                  API Back-end: Online • Dados em tempo real
-                </span>
+              <div class="px-4 py-2 font-mono text-sm">
+                <span class="text-indigo-400">➜</span>
+                <span class="text-zinc-300"> Desenvolvedor Back-end | Java</span>
               </div>
             </div>
-            
-            <!-- STATS -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20 stagger-animation">
-              <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-                <div class="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-2">Dezenas</div>
-                <div class="font-semibold text-gray-700 dark:text-gray-300 text-lg">
-                  Projetos Desenvolvidos
-                </div>
-                <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
-                  Arquitetura escalável e boas práticas
-                </p>
-              </div>
-              
-              <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-                <div class="text-4xl font-bold text-green-600 dark:text-green-400 mb-2">100%</div>
-                <div class="font-semibold text-gray-700 dark:text-gray-300 text-lg">
-                  Código Aberto
-                </div>
-                <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
-                  Repositórios públicos documentados
-                </p>
-              </div>
-              
-              <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-                <div class="text-4xl font-bold text-purple-600 dark:text-purple-400 mb-2">+2 Anos</div>
-                <div class="font-semibold text-gray-700 dark:text-gray-300 text-lg">
-                  Experiência Full Stack
-                </div>
-                <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
-                  Spring Boot API + Angular Front-end
-                </p>
-              </div>
-            </div>
-            
-            <!-- STACK TECNOLÓGICA -->
+          </div>
+
+          <p class="text-xl text-zinc-300 max-w-3xl mx-auto mb-8">
+            {{ profileService.profile()!.summary }}
+          </p>
+          
+        </section>
+
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-24">
+          <div class="bg-zinc-900/80 backdrop-blur border border-zinc-700 rounded-xl p-6">
+            <div class="text-4xl font-bold text-indigo-400 mb-2">Dezenas</div>
+            <div class="font-semibold text-zinc-200 text-lg">Projetos Desenvolvidos</div>
+            <p class="text-sm text-zinc-400 mt-2">Arquitetura e boas práticas</p>
+          </div>
+
+          <div class="bg-zinc-900/80 backdrop-blur border border-zinc-700 rounded-xl p-6">
+            <div class="text-4xl font-bold text-emerald-400 mb-2">100%</div>
+            <div class="font-semibold text-zinc-200 text-lg">Código Aberto</div>
+            <p class="text-sm text-zinc-400 mt-2">Repositórios públicos</p>
+          </div>
+
+          <div class="bg-zinc-900/80 backdrop-blur border border-zinc-700 rounded-xl p-6">
+            <div class="text-4xl font-bold text-blue-400 mb-2">+2 Anos</div>
+            <div class="font-semibold text-zinc-200 text-lg">Back-end Java</div>
+            <p class="text-sm text-zinc-400 mt-2">APIs REST e sistemas</p>
+          </div>
+        </section>
+
+        <!-- STACK TECNOLÓGICA -->
             <div class="bg-white dark:bg-gray-800/50 rounded-2xl shadow-xl p-8 mb-16 border border-gray-200 dark:border-gray-700 backdrop-blur-sm">
               <h2 class="text-3xl font-bold text-center mb-10 text-gray-900 dark:text-white">
                 🛠 Stack Tecnológica Principal
@@ -117,11 +105,11 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
                   <ul class="space-y-2">
                     <li class="flex items-center text-gray-700 dark:text-gray-300">
                       <div class="w-2 h-2 rounded-full bg-blue-500 mr-2"></div>
-                      Java 17+
+                      Java 
                     </li>
                     <li class="flex items-center text-gray-700 dark:text-gray-300">
                       <div class="w-2 h-2 rounded-full bg-blue-500 mr-2"></div>
-                      Spring Boot 3.x
+                      Spring Boot 
                     </li>
                     <li class="flex items-center text-gray-700 dark:text-gray-300">
                       <div class="w-2 h-2 rounded-full bg-blue-500 mr-2"></div>
@@ -145,19 +133,15 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
                   <ul class="space-y-2">
                     <li class="flex items-center text-gray-700 dark:text-gray-300">
                       <div class="w-2 h-2 rounded-full bg-purple-500 mr-2"></div>
-                      Angular 17+
+                      Angular 
                     </li>
                     <li class="flex items-center text-gray-700 dark:text-gray-300">
                       <div class="w-2 h-2 rounded-full bg-purple-500 mr-2"></div>
                       TypeScript
                     </li>
-                    <li class="flex items-center text-gray-700 dark:text-gray-300">
+                     <li class="flex items-center text-gray-700 dark:text-gray-300">
                       <div class="w-2 h-2 rounded-full bg-purple-500 mr-2"></div>
-                      Tailwind CSS
-                    </li>
-                    <li class="flex items-center text-gray-700 dark:text-gray-300">
-                      <div class="w-2 h-2 rounded-full bg-purple-500 mr-2"></div>
-                      RxJS
+                      JavaScript
                     </li>
                   </ul>
                 </div>
@@ -179,10 +163,7 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
                       <div class="w-2 h-2 rounded-full bg-green-500 mr-2"></div>
                       MySQL
                     </li>
-                    <li class="flex items-center text-gray-700 dark:text-gray-300">
-                      <div class="w-2 h-2 rounded-full bg-green-500 mr-2"></div>
-                      MongoDB
-                    </li>
+                    
                     <li class="flex items-center text-gray-700 dark:text-gray-300">
                       <div class="w-2 h-2 rounded-full bg-green-500 mr-2"></div>
                       Redis
@@ -213,7 +194,7 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
                     </li>
                     <li class="flex items-center text-gray-700 dark:text-gray-300">
                       <div class="w-2 h-2 rounded-full bg-red-500 mr-2"></div>
-                      CI/CD
+                      RabbitMQ
                     </li>
                   </ul>
                 </div>
@@ -238,20 +219,11 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
                 🚀 Explore Mais
               </h2>
               <p class="text-gray-600 dark:text-gray-300 mb-10 max-w-2xl mx-auto">
-                Confira meus projetos completos e explore detalhes técnicos da minha stack
+                Confira meus projetos completos
               </p>
               
               <div class="flex flex-col sm:flex-row justify-center gap-6">
-                <a 
-                  routerLink="/stack"
-                  class="animate-float inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-slate-700 to-slate-800
- text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300"
-                >
-                  <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
-                  </svg>
-                  Stack Completa
-                </a>
+            
                 
                 <a 
                   routerLink="/projects"
@@ -265,12 +237,7 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
                 </a>
               </div>
               
-              <div class="mt-8 inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg">
-                <div class="w-2 h-2 bg-white rounded-full mr-2"></div>
-                <span class="text-sm font-medium">
-                  Arquitetura Full Stack: Spring Boot API + Angular Front-end
-                </span>
-              </div>
+              
             </div>
             
             <!-- CONTATO -->
@@ -354,22 +321,37 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
                 </div>
               </div>
             </div>
+            <div class="inline-flex items-center px-4 py-2 bg-emerald-900/30 border border-emerald-700 rounded-lg">
+            <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse mr-2"></div>
+            <span class="text-emerald-300 font-mono text-sm">
+              Site densenvolvido com arquitetura Full Stack: Spring Boot API + Angular Front-end
+            </span>
+          </div>
+<br>
+<br>          <div class="inline-flex items-center px-4 py-2 bg-emerald-900/30 border border-emerald-700 rounded-lg">
+            <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse mr-2"></div>
+            <span class="text-emerald-300 font-mono text-sm">
+              API Back-end Online • Dados em tempo real
+            </span>
+          </div>
           </div>
         }
       </main>
       
       <app-footer />
-    </div>
   `,
-  styles: []
+  styles: [],
 })
 export class HomeComponent implements OnInit {
   profileService = inject(ProfileService);
-  
+  private platformId = inject(PLATFORM_ID);
+
   ngOnInit(): void {
-    this.loadProfile();
+    if (isPlatformBrowser(this.platformId)) {
+      this.loadProfile();
+    }
   }
-  
+
   loadProfile(): void {
     this.profileService.fetchProfile().subscribe();
   }

@@ -21,7 +21,7 @@ import { CommonModule } from '@angular/common';
       <div class="mt-4">
         <button 
           (click)="onRetry.emit()"
-          class="text-sm font-medium text-red-800 dark:text-red-200 hover:text-red-900"
+          class="text-sm font-medium text-red-800 dark:text-red-200 hover:text-red-900 dark:hover:text-red-100"
         >
           Tentar novamente
         </button>

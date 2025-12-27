@@ -105,80 +105,6 @@
   50% { border-color: #00ff00; }
 }
 
-/* Efeito de matrix (opcional, para fundo) */
-.matrix-bg {
-  position: relative;
-  overflow: hidden;
-}
-
-.matrix-bg::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: 
-    linear-gradient(transparent 95%, rgba(0, 255, 0, 0.05) 100%),
-    linear-gradient(90deg, transparent 95%, rgba(0, 255, 0, 0.05) 100%);
-  background-size: 50px 50px;
-  opacity: 0.1;
-  pointer-events: none;
-}
-
-/* Efeito de scanline (como terminal antigo) */
-.scanlines {
-  position: relative;
-  overflow: hidden;
-}
-
-.scanlines::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    to bottom,
-    transparent 50%,
-    rgba(0, 255, 0, 0.03) 50%
-  );
-  background-size: 100% 4px;
-  pointer-events: none;
-  z-index: 1;
-  animation: scanline 10s linear infinite;
-}
-
-@keyframes scanline {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(100vh); }
-}
-
-/* Efeito de partículas (opcional) */
-.particle {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: #00ff00;
-  border-radius: 50%;
-  pointer-events: none;
-  opacity: 0;
-}
-
-/* Gradientes animados */
-.animated-gradient {
-  background: linear-gradient(-45deg, #0d1117, #161b22, #0a0c10, #161b22);
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
-}
-
-@keyframes gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
 /* Componentes modernos com toques de terminal */
 @layer components {
   /* Card moderno */
@@ -384,119 +310,43 @@
 * {
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
-.gradient-bg {
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
+/* Adicione ao seu arquivo de estilos */
+@keyframes progress-bar {
+  0% { width: 0; }
+  100% { width: 90%; }
 }
 
-@keyframes gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+.animate-progress-bar {
+  animation: progress-bar 1.5s ease-out forwards;
 }
 
-/* Efeito de brilho sutil */
-.glow-effect {
-  position: relative;
+/* Animações de entrada para os cards */
+@keyframes card-float {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.glow-effect::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 2px;
-  background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899);
-  -webkit-mask: 
-    linear-gradient(#fff 0 0) content-box, 
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+.group {
+  animation: card-float 0.6s ease-out forwards;
 }
 
-.glow-effect:hover::before {
-  opacity: 1;
+.group:nth-child(1) { animation-delay: 0.1s; }
+.group:nth-child(2) { animation-delay: 0.2s; }
+.group:nth-child(3) { animation-delay: 0.3s; }
+.group:nth-child(4) { animation-delay: 0.4s; }
+
+/* Efeito de brilho suave */
+.hover-glow {
+  transition: box-shadow 0.3s ease;
 }
 
-/* Efeito de vidro (glassmorphism) */
-.glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.dark .glass {
-  background: rgba(0, 0, 0, 0.2);
-}
-
-/* Efeito de linha decorativa */
-.section-divider {
-  position: relative;
-  height: 1px;
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(59, 130, 246, 0.5), 
-    transparent
-  );
-}
-
-.section-divider::after {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 5px;
-  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-  border-radius: 3px;
-}
-
-/* Scroll suave */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-.dark ::-webkit-scrollbar-track {
-  background: #1f2937;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-/* Efeito de digitação (typing) */
-.typewriter {
-  overflow: hidden;
-  border-right: 3px solid #3b82f6;
-  white-space: nowrap;
-  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
-}
-
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
-}
-
-@keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: #3b82f6 }
+.hover-glow:hover {
+  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15),
+              0 10px 20px rgba(139, 92, 246, 0.1);
 }

@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
           <div class="mb-6 md:mb-0">
             <h3 class="text-xl font-bold text-gray-900 dark:text-white">Pablo Carvalho</h3>
             <p class="text-gray-600 dark:text-gray-400 mt-1">
-              Desenvolvedor Back-end | Java & Spring Boot
+              Desenvolvedor Back-end Java 
             </p>
           </div>
           
@@ -56,11 +56,14 @@ import { CommonModule } from '@angular/common';
         <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-800 text-center">
           <p class="text-gray-600 dark:text-gray-400 text-sm">
             © 2025 Pablo Carvalho • 
-            <span class="text-blue-600 dark:text-blue-400 font-medium">Arquitetura Full Stack</span> • 
+            <span class="text-indigo-500 dark:text-indigo-400 font-medium">
+ Back-end Engineer
+</span>
+ • 
             Dados consumidos via API REST Spring Boot
           </p>
           <p class="text-gray-500 dark:text-gray-500 text-xs mt-2">
-            Tecnologias: Angular 17+ • TypeScript • Tailwind CSS • Spring Boot • Java 17
+            Tecnologias: Angular  • TypeScript • Tailwind CSS • Spring Boot • Java 
           </p>
         </div>
       </div>
