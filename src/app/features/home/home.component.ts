@@ -51,7 +51,6 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
                 <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
                 <span class="w-2.5 h-2.5 rounded-full bg-yellow-400"></span>
                 <span class="w-2.5 h-2.5 rounded-full bg-green-500"></span>
-                <span class="ml-2 text-xs text-zinc-400 font-mono">terminal</span>
               </div>
               <div class="px-4 py-2 font-mono text-sm">
                 <span class="text-indigo-400">➜</span>
@@ -85,7 +84,17 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
             <p class="text-sm text-zinc-400 mt-2">APIs REST e sistemas</p>
           </div>
         </section>
+  
+        <div class="flex justify-center mt-10">
+  <div class="inline-flex items-center px-4 py-2 bg-emerald-900/30 border border-emerald-700 rounded-lg space-x-2">
+    <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+    <span class="text-emerald-300 font-mono text-sm typing">
+      API Back-end Online • Dados consumidos em tempo real
+    </span>
+  </div>
+</div>
 
+  <br>
         <!-- STACK TECNOLÓGICA -->
             <div class="bg-white dark:bg-gray-800/50 rounded-2xl shadow-xl p-8 mb-16 border border-gray-200 dark:border-gray-700 backdrop-blur-sm">
               <h2 class="text-3xl font-bold text-center mb-10 text-gray-900 dark:text-white">
@@ -321,19 +330,16 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
                 </div>
               </div>
             </div>
-            <div class="inline-flex items-center px-4 py-2 bg-emerald-900/30 border border-emerald-700 rounded-lg">
-            <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse mr-2"></div>
-            <span class="text-emerald-300 font-mono text-sm">
-              Site densenvolvido com arquitetura Full Stack: Spring Boot API + Angular Front-end
-            </span>
-          </div>
-<br>
-<br>          <div class="inline-flex items-center px-4 py-2 bg-emerald-900/30 border border-emerald-700 rounded-lg">
-            <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse mr-2"></div>
-            <span class="text-emerald-300 font-mono text-sm">
-              API Back-end Online • Dados em tempo real
-            </span>
-          </div>
+            <div class="flex justify-center mt-10">
+  <div class="inline-flex items-center px-4 py-2 bg-emerald-900/30 border border-emerald-700 rounded-lg space-x-2">
+    <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+    <span class="text-emerald-300 font-mono text-sm typing">
+      Site densenvolvido com arquitetura Full Stack: Spring Boot API + Angular Front-end
+    </span>
+  </div>
+</div>
+
+      
           </div>
         }
       </main>
