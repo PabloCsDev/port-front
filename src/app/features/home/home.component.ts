@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, AfterViewInit, inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ProfileService } from '../../core/services/profile.service';
@@ -67,13 +67,13 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
 
         <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-24">
           <div class="bg-zinc-900/80 backdrop-blur border border-zinc-700 rounded-xl p-6">
-            <div class="text-4xl font-bold text-indigo-400 mb-2">Dezenas</div>
+            <div class="text-4xl font-bold text-blue-400 mb-2">Dezenas</div>
             <div class="font-semibold text-zinc-200 text-lg">Projetos Desenvolvidos</div>
             <p class="text-sm text-zinc-400 mt-2">Arquitetura e boas práticas</p>
           </div>
 
           <div class="bg-zinc-900/80 backdrop-blur border border-zinc-700 rounded-xl p-6">
-            <div class="text-4xl font-bold text-emerald-400 mb-2">100%</div>
+            <div class="text-4xl font-bold text-blue-400 mb-2">100%</div>
             <div class="font-semibold text-zinc-200 text-lg">Código Aberto</div>
             <p class="text-sm text-zinc-400 mt-2">Repositórios públicos</p>
           </div>
@@ -84,7 +84,6 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
             <p class="text-sm text-zinc-400 mt-2">APIs REST e sistemas</p>
           </div>
         </section>
-  
         <div class="flex justify-center mt-10">
   <div class="inline-flex items-center px-4 py-2 bg-emerald-900/30 border border-emerald-700 rounded-lg space-x-2">
     <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
@@ -283,7 +282,7 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
                       <h3 class="font-semibold text-gray-900 dark:text-white mb-1">Email</h3>
                       <a 
                         href="mailto:{{ profileService.profile()!.email }}"
-                        class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors font-medium hover:underline"
+                        class="break-all sm:break-normal text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors font-medium hover:underline"
                       >
                         {{ profileService.profile()!.email }}
                       </a>
@@ -348,7 +347,8 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
   `,
   styles: [],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
+
   profileService = inject(ProfileService);
   private platformId = inject(PLATFORM_ID);
 
@@ -356,7 +356,25 @@ export class HomeComponent implements OnInit {
     if (isPlatformBrowser(this.platformId)) {
       this.loadProfile();
     }
+    
   }
+  ngAfterViewInit(): void {
+  if (!isPlatformBrowser(this.platformId)) return;
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+
 
   loadProfile(): void {
     this.profileService.fetchProfile().subscribe();

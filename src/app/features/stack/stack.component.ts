@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, AfterViewInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { StackService } from '../../core/services/stack.service';
@@ -21,18 +21,18 @@ import { StackResponse } from '../../shared/models/stack.model';
     FooterComponent
   ],
   template: `
-    <div class="min-h-screen bg-code-bg scanlines">
+    <div class="min-h-screen bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 text-zinc-200">
       <app-header />
 
       <main class="container mx-auto px-4 py-12">
         <div class="max-w-6xl mx-auto">
           <div class="command-line mb-12">
             <div class="flex items-center mb-2">
-              <span class="text-terminal-red font-mono">❯</span>
+              <span class="text-blue-400 font-mono ml-2">❯</span>
               <span class="text-terminal-green font-mono ml-2">tech_stack --show-all --with-icons</span>
-              <span class="ml-2 h-4 w-2 bg-terminal-green animate-blink"></span>
+              <span class="ml-2 h-4 w-2 bg-blue-400 animate-blink"></span>
             </div>
-            <div class="text-terminal-cyan font-mono text-lg">
+            <div class="text-terminal-cyan font-mono, AfterViewInit text-lg">
               Explorando o arsenal tecnológico
             </div>
           </div>
@@ -51,7 +51,7 @@ import { StackResponse } from '../../shared/models/stack.model';
                 <section>
                   <div class="flex items-center mb-6">
                     <h2 class="text-2xl font-bold text-white font-mono">
-                      <span class="text-terminal-blue">/</span> {{ category.label }}
+                      <span class="text-blue-400">/</span> {{ category.label }}
                     </h2>
                     <span class="ml-4 text-code-comment font-mono text-sm">
                       ({{ category.items.length }})
@@ -61,7 +61,7 @@ import { StackResponse } from '../../shared/models/stack.model';
                   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     @for (item of category.items; track item.name) {
                       @let techIcon = getTechIcon(item.name);
-                      <div class="card-terminal hover-lift">
+                      <div class="card-terminal hover-lift border-blue-400/30 hover:border-blue-400">
                         <div class="flex items-center justify-between">
                           <div class="flex items-center">
                             <div class="w-12 h-12 rounded-lg bg-code-border/30 flex items-center justify-center mr-4">
@@ -82,14 +82,6 @@ import { StackResponse } from '../../shared/models/stack.model';
                               </div>
                             </div>
                           </div>
-
-                          <span
-                            class="text-xs font-mono px-2 py-1 rounded"
-                            [class.bg-terminal-green]="item.level === 'production'"
-                            [class.bg-terminal-yellow]="item.level === 'learning'"
-                          >
-                            {{ item.level }}
-                          </span>
                         </div>
                       </div>
                     }
@@ -98,7 +90,7 @@ import { StackResponse } from '../../shared/models/stack.model';
               }
 
               <div class="card-terminal mt-12 text-center">
-                <div class="text-terminal-yellow font-mono text-lg">
+                <div class=" text-terminal-green font-mono ml-2font-mono text-lg">
                   {{ stack()!.meta.learningMessage }}
                 </div>
               </div>
@@ -106,8 +98,8 @@ import { StackResponse } from '../../shared/models/stack.model';
           }
 
           <div class="mt-12 text-center">
-            <a routerLink="/" class="btn-terminal inline-flex items-center">
-              <span class="text-terminal-red font-mono">cd</span>
+            <a routerLink="/" class="text-terminal-green font-mono ml-2 btn-terminal inline-flex items-center">
+              <span class="text-terminal-green font-mono ml-2 font-mono">cd</span>
               <span class="ml-2">..</span>
             </a>
           </div>
@@ -119,7 +111,7 @@ import { StackResponse } from '../../shared/models/stack.model';
   `,
   styles: []
 })
-export class StackComponent implements OnInit {
+export class StackComponent implements OnInit, AfterViewInit {
   stackService = inject(StackService);
   techIconsService = inject(TechIconsService);
 
@@ -128,6 +120,20 @@ export class StackComponent implements OnInit {
   ngOnInit(): void {
     this.loadStack();
   }
+ngAfterViewInit(): void {
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
 
   loadStack(): void {
     this.stackService.fetchStack().subscribe();
@@ -137,3 +143,4 @@ export class StackComponent implements OnInit {
     return this.techIconsService.getIconForTech(name);
   }
 }
+

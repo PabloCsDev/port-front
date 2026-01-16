@@ -15,40 +15,53 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     >
       <div class="container mx-auto px-4 py-4 flex items-center justify-between">
 
-        <!-- Terminal identity -->
         <div class="flex items-center gap-3 font-mono text-sm">
-          <span class="text-green-600 dark:text-green-400 animate-pulse">●</span>
-          <span class="text-gray-900 dark:text-gray-100">
+          <span class="text-blue-400 mb-2 dark:text-green-400 animate-pulse">●</span>
+          <a
+            routerLink="/"
+            class="font-mono cursor-pointer hover:text-blue-400 transition-colors"
+          >
             pablo@dev
-          </span>
+          </a>
           <span class="text-gray-400">:~$</span>
         </div>
 
-
-        <!-- Navigation -->
         <nav class="flex items-center gap-6 text-sm font-medium">
+
           <a
             routerLink="/"
-            routerLinkActive="text-indigo-500 dark:text-indigo-400"
-            class="text-gray-700 dark:text-gray-300 hover:text-indigo-500
- dark:hover:text-indigo-400 transition-colors"
+            routerLinkActive="text-blue-400"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="relative px-3 py-2 font-mono transition-all duration-300 hover:text-blue-400 mb-2
+                   after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0
+                   after:bg-blue-400 after:transition-all after:duration-300
+                   hover:after:w-full"
           >
             Home
           </a>
+
           <a
             routerLink="/stack"
-            routerLinkActive="text-blue-600 dark:text-blue-400"
-            class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            routerLinkActive="text-blue-400"
+            class="relative px-3 py-2 font-mono transition-all duration-300 hover:text-blue-400 mb-2
+                   after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0
+                   after:bg-blue-400 after:transition-all after:duration-300
+                   hover:after:w-full"
           >
             Stack
           </a>
+
           <a
             routerLink="/projects"
-            routerLinkActive="text-blue-600 dark:text-blue-400"
-            class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+           routerLinkActive="text-blue-400"
+            class="relative px-3 py-2 font-mono transition-all duration-300 hover:text-blue-400 mb-2
+                   after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0
+                   after:bg-blue-400 after:transition-all after:duration-300
+                   hover:after:w-full"
           >
-            Projetos
+            Projects
           </a>
+
         </nav>
 
       </div>
