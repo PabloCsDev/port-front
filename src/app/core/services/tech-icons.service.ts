@@ -37,6 +37,12 @@ export class TechIconsService {
       color: '#6db33f',
       category: 'framework'
     },
+    'Spring Boot': {
+      name: 'Spring Boot',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg',
+      color: '#6db33f',
+      category: 'framework'
+    },
     'Spring Security': {
       name: 'Spring Security',
       icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg',
@@ -66,15 +72,96 @@ export class TechIconsService {
       icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
       color: '#f05032',
       category: 'tool'
+    },
+    GitHub: {
+      name: 'GitHub',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg',
+      color: '#181717',
+      category: 'tool'
+    },
+    'JPA / Hibernate': {
+      name: 'JPA / Hibernate',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/hibernate/hibernate-original.svg',
+      color: '#59666c',
+      category: 'orm'
+    },
+    'APIs REST': {
+      name: 'APIs REST',
+      icon: '🌐',
+      color: '#339933',
+      category: 'api'
+    },
+    JavaScript: {
+      name: 'JavaScript',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
+      color: '#f7df1e',
+      category: 'language'
+    },
+    Redis: {
+      name: 'Redis',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg',
+      color: '#dc382d',
+      category: 'database'
+    },
+    RabbitMQ: {
+      name: 'RabbitMQ',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rabbitmq/rabbitmq-original.svg',
+      color: '#ff6600',
+      category: 'tool'
+    },
+    Linux: {
+      name: 'Linux',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg',
+      color: '#fcc624',
+      category: 'os'
+    },
+    'Clean Code': {
+      name: 'Clean Code',
+      icon: '✨',
+      color: '#4ade80',
+      category: 'concept'
+    },
+    SOLID: {
+      name: 'SOLID',
+      icon: '🧱',
+      color: '#3b82f6',
+      category: 'concept'
+    },
+    'Arquitetura em camadas': {
+      name: 'Arquitetura em camadas',
+      icon: '🏗️',
+      color: '#8b5cf6',
+      category: 'concept'
+    },
+    'Processamento assíncrono': {
+      name: 'Processamento assíncrono',
+      icon: '⚡',
+      color: '#ff9900',
+      category: 'concept'
     }
   };
 
-  getIconForTech(name: string): TechIcon | undefined {
+  getIconForTech(name: string): TechIcon {
     if (this.icons[name]) {
       return this.icons[name];
     }
+    
     const lowerName = name.toLowerCase();
     const key = Object.keys(this.icons).find(k => k.toLowerCase() === lowerName);
-    return key ? this.icons[key] : undefined;
+    
+    if (key) {
+      return this.icons[key];
+    }
+    
+    return {
+      name: name,
+      icon: '🔧',
+      color: '#6b7280',
+      category: 'general'
+    };
+  }
+
+  getAllIcons(): TechIcon[] {
+    return Object.values(this.icons);
   }
 }

@@ -26,8 +26,9 @@
             "inlineStyleLanguage": "scss",
             "assets": [
                 "src/favicon.ico",
+                "src/curriculo.pdf",
                 "src/assets"
-            ],
+               ],
             "styles": [
               "src/styles.scss"
             ],
