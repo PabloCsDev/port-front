@@ -55,9 +55,9 @@ import { CommonModule } from '@angular/common';
         <!-- Info Técnica -->
         <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-800 text-center">
           <p class="text-gray-600 dark:text-gray-400 text-sm">
-            © 2025 Pablo Carvalho • 
+            © 2026 Pablo Carvalho • 
             <span class="text-indigo-500 dark:text-indigo-400 font-medium">
- Back-end Engineer
+ Back-end
 </span>
  • 
             Dados consumidos via API REST Spring Boot
