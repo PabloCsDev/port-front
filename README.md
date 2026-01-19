@@ -7,9 +7,9 @@
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg" width="70"/>
 </p>
 
-Frontend institucional desenvolvido em **Angular moderno**, consumindo uma **API REST real em produção**, com foco em **arquitetura limpa, organização, performance e experiência do usuário**.
+Frontend institucional desenvolvido com **Angular moderno**, utilizando **SSR (Server-Side Rendering) + Prerender**, consumindo uma **API REST real em produção**, com foco em **arquitetura limpa, organização, performance e experiência do usuário**.
 
-Este projeto faz parte de um **portfólio full stack profissional**, simulando um produto real de mercado com frontend e backend desacoplados.
+Este projeto faz parte de um **portfólio full stack profissional**, simulando um produto real de mercado, com frontend e backend totalmente desacoplados.
 
 ---
 
@@ -25,15 +25,33 @@ Este projeto faz parte de um **portfólio full stack profissional**, simulando u
 
 ## ✨ Funcionalidades
 
-✅ Consumo de API REST em produção  
-✅ Exibição dinâmica de perfil profissional  
-✅ Listagem de stack tecnológica  
-✅ Listagem de projetos técnicos  
-✅ Separação clara de responsabilidades  
-✅ Environment configurado para dev e produção  
-✅ SSR + Prerender para melhor performance e SEO  
-✅ UI responsiva e moderna  
-✅ Deploy automatizado em cloud  
+- ✅ Consumo de API REST em produção  
+- ✅ Exibição dinâmica de perfil profissional  
+- ✅ Listagem de stack tecnológica  
+- ✅ Listagem de projetos técnicos  
+- ✅ Separação clara de responsabilidades  
+- ✅ Environment configurado para dev e produção  
+- ✅ **SSR (Angular Universal) + Prerender**  
+- ✅ UI responsiva e moderna  
+- ✅ Deploy automatizado em cloud  
+
+---
+
+## 🧠 Renderização (SSR)
+
+Este projeto utiliza **Angular Universal**, permitindo que as páginas sejam **renderizadas no servidor** antes de chegar ao navegador.
+
+Arquivos responsáveis:
+- `server.ts`  
+- `main.server.ts`  
+- `app.routes.server.ts`  
+- `app.config.server.ts`  
+
+**Benefícios do SSR:**
+- Melhor SEO  
+- Melhor tempo de carregamento inicial (TTFB)  
+- Melhor indexação por motores de busca  
+- Experiência de usuário mais fluida  
 
 ---
 
@@ -43,52 +61,93 @@ Usuário
 ↓
 Angular (SSR + Prerender)
 ↓
-ApiService (HttpClient)
+ApiService (HttpClient + Interceptor)
 ↓
-API REST Spring Boot
+API REST Spring Boot (Railway)
 ```
 
-O frontend é totalmente desacoplado do backend, consumindo dados via HTTP e permitindo escalabilidade, manutenção e evolução independentes.
+O frontend é totalmente desacoplado do backend, consumindo dados via HTTP, o que permite escalabilidade, manutenção e evolução independentes.
 
 ---
 
 ## 🌐 Backend Consumido
 
-API REST em produção (Spring Boot):
+API REST em produção (Spring Boot) no Railway:
 ```
-https://portifolio-api-bae0.onrender.com/api
+https://port-api.up.railway.app/api
 ```
-
 ### Endpoints utilizados
 ```
-- `GET /profile` → Perfil profissional  
-- `GET /stack` → Stack tecnológica  
-- `GET /projects` → Projetos técnicos  
+GET /profile → Perfil profissional
+
+GET /stack → Stack tecnológica
+
+GET /projects → Projetos técnicos
 ```
 ---
 
 ## 🧱 Estrutura do Projeto
-
 ```
-src/
-├── app/
-│ ├── core/
-│ │ └── services/
-│ │ └── api.service.ts
-│ ├── features/
-│ │ ├── home/
-│ │ ├── stack/
-│ │ └── projects/
-│ ├── shared/
-│ │ └── components/
-│ └── app.routes.ts
-├── environments/
-│ ├── environment.ts
-│ └── environment.development.ts
-└── styles.css
+src
+├── app
+│   ├── app.component.ts
+│   ├── app.config.server.ts
+│   ├── app.config.ts
+│   ├── app.html
+│   ├── app.routes.server.ts
+│   ├── app.routes.ts
+│   ├── app.scss
+│   ├── app.spec.ts
+│   ├── app.ts
+│   ├── core
+│   │   ├── interceptors
+│   │   │   └── api.interceptor.ts
+│   │   ├── service
+│   │   │   └── theme.service.ts
+│   │   └── services
+│   │       ├── api.service.ts
+│   │       ├── profile.service.ts
+│   │       ├── projects.service.ts
+│   │       ├── stack.service.ts
+│   │       ├── tech-icons.service.ts
+│   │       └── theme.service.ts
+│   ├── features
+│   │   ├── home
+│   │   │   └── home.component.ts
+│   │   ├── projects
+│   │   │   └── projects.component.ts
+│   │   └── stack
+│   │       └── stack.component.ts
+│   └── shared
+│       ├── components
+│       │   ├── error
+│       │   │   └── error.component.ts
+│       │   ├── footer
+│       │   │   └── footer.component.ts
+│       │   ├── header
+│       │   │   └── header.component.ts
+│       │   └── loading
+│       │       └── loading.component.ts
+│       └── models
+│           ├── api-response.model.ts
+│           ├── profile.model.ts
+│           ├── project.model.ts
+│           └── stack.model.ts
+├── assets
+│   └── curriculo.pdf
+├── environments
+│   ├── environment.development.ts
+│   ├── environment.prod.ts
+│   ├── environment.production.ts
+│   └── environment.ts
+├── favicon.ico
+├── index.html
+├── main.server.ts
+├── main.ts
+├── server.ts
+└── styles.scss
 ```
-
-Arquitetura pensada para **escalabilidade, legibilidade, manutenção e crescimento do projeto**.
+Arquitetura pensada para **escalabilidade, legibilidade, manutenção e crescimento**.
 
 ---
 
@@ -98,39 +157,40 @@ Arquitetura pensada para **escalabilidade, legibilidade, manutenção e crescime
 ```
 export const environment = {
   production: true,
-  apiUrl: 'https://portifolio-api-bae0.onrender.com/api'
+  apiUrl: 'https://port-api.up.railway.app/api'
 };
 ```
+Desenvolvimento
 ```
-export const environment = {
-  production: false,
-  apiUrl: 'http://localhost:8080/api'
+export  const  environment  = {
+	production: false,
+	apiUrl: 'https://port-api.up.railway.app/api'
 };
 ```
-### 🚀 Como executar o projeto localmente
-``` 
+🚀 Como executar o projeto localmente
 Pré-requisitos
 Node.js 18+
+
 Angular CLI 21+
-```
-### 1️⃣ Clonar o repositório
+
+1️⃣ Clonar o repositório
 ```
 git clone https://github.com/PabloCsDev/portfolio-frontend.git
 cd portfolio-frontend
 ```
-### 2️⃣ Instalar dependências
+2️⃣ Instalar dependências
 ```
 npm install
 ```
-### 3️⃣ Executar em desenvolvimento
+3️⃣ Executar em desenvolvimento
 ```
 ng serve
 ```
 A aplicação estará disponível em:
 ```
 http://localhost:4200
-``` 
-### 🏗 Build de Produção
+```
+🏗 Build de Produção
 ```
 npm run build
 ```
@@ -138,12 +198,12 @@ Arquivos gerados em:
 ```
 dist/portfolio-frontend/browser
 ```
-### ☁️ Deploy
-Frontend hospedado na Vercel, utilizando:
+☁️ Deploy
+Frontend hospedado na Vercel
 
 Build automático
 
-Prerender de rotas
+SSR + Prerender de rotas
 
 Alta performance
 
@@ -151,7 +211,7 @@ HTTPS por padrão
 
 Integração direta com API em produção
 
-### 🔮 Evoluções Futuras (Planejadas)
+🔮 Evoluções Futuras (Planejadas)
 Skeleton loaders e estados de loading
 
 Cache e otimização de requisições
@@ -166,11 +226,10 @@ Monitoramento e logs de erro
 
 Animações e microinterações
 
-### 👨‍💻 Desenvolvido por
+👨‍💻 Desenvolvido por
 Pablo Carvalho Santos
 Desenvolvedor Back-end | Java & Spring Boot
 
 📧 Email: devpablocarvalho@gmail.com
 🔗 LinkedIn: https://www.linkedin.com/in/pablo-carvalho-140255260
 💻 GitHub: https://github.com/PabloCsDev
-
